@@ -19,27 +19,27 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        mergeMap((event: NavigationEnd) => {
-          if (event.url.includes('/user')) {
-            const url = event.url.split('/')[2];
-            return this.userService.getUser(url);
-          }
-          return of(null);
-        })
-      )
-      .subscribe((user: IUser | null) => {
-        if (user) {
-          console.log(user);
-          this.titleService.setTitle(
-            `ATS | ${user.name.first} ${user.name.last}`
-          );
-        } else {
-          console.log('not a user URL');
-          this.titleService.setTitle('ATS');
-        }
-      });
+    // this.router.events
+    //   .pipe(
+    //     filter((event) => event instanceof NavigationEnd),
+    //     mergeMap((event: NavigationEnd) => {
+    //       if (event.url.includes('/user')) {
+    //         const url = event.url.split('/')[2];
+    //         return this.userService.getUser(url);
+    //       }
+    //       return of(null);
+    //     })
+    //   )
+    //   .subscribe((user: IUser | null) => {
+    //     if (user) {
+    //       console.log(user);
+    //       this.titleService.setTitle(
+    //         `ATS | ${user.name.first} ${user.name.last}`
+    //       );
+    //     } else {
+    //       console.log('not a user URL');
+    //       this.titleService.setTitle('ATS');
+    //     }
+    //   });
   }
 }
